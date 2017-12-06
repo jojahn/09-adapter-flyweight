@@ -7,13 +7,13 @@
     android:gravity="center"
     tools:context="de.fhro.inf.prg3.a09.MainActivity">
 
-    <ListView
-        android:id="@+id/fighter_list_view"
-        android:layout_width="368dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fighterListView"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

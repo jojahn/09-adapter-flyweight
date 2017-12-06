@@ -4,7 +4,11 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import de.fhro.inf.prg3.a09.R;
@@ -24,11 +28,13 @@ public class FighterFactory {
     private final Random random;
     private final Context context;
     private final NameGenerator nameGenerator;
+    private Map<Integer, Drawable> loadedImages;
 
     public FighterFactory(Context context) {
         this.context = context;
         nameGenerator = new NameGenerator(context);
         random = new Random();
+        loadedImages = new HashMap<>();
     }
 
     public Fighter createFighter() {
@@ -49,6 +55,12 @@ public class FighterFactory {
     }
 
     private Drawable loadImage(int imageId) {
-        return new BitmapDrawable(context.getResources(), BitmapFactory.decodeResource(context.getResources(), imageId));
+        if (loadedImages.containsKey(imageId))
+            return loadedImages.get(imageId);
+        Drawable image = new BitmapDrawable(context.getResources(), BitmapFactory.decodeResource(context.getResources(), imageId));
+        loadedImages.put(imageId, image);
+        System.out.println("----loaded image " + imageId);
+
+        return image;
     }
 }
