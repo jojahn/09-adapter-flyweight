@@ -25,6 +25,7 @@ public class FighterRecyclerViewAdapter extends RecyclerView.Adapter<FighterRecy
 
     private List<Fighter> fighters;
     LayoutInflater inflater;
+    private Context ctx;
 
     public static class FighterViewHolder extends RecyclerView.ViewHolder {
         private TextView pilotNameView;
@@ -51,24 +52,26 @@ public class FighterRecyclerViewAdapter extends RecyclerView.Adapter<FighterRecy
         }
     }
 
-    public FighterRecyclerViewAdapter(List<Fighter> fighters) {
+    public FighterRecyclerViewAdapter(Context ctx, List<Fighter> fighters) {
         this.fighters = fighters;
+        this.ctx = ctx;
     }
 
     @Override
     public FighterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fighter_item, parent, false);
-        FighterViewHolder fvh = new FighterViewHolder(v);
-        return fvh;
+        return new FighterViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(FighterViewHolder holder, int position) {
+        Fighter f = fighters.get(position);
+
         System.out.println("----position : " + position);
-        holder.fighterTypeView.setText(fighters.get(position).getFighterType());
-        holder.fighterImageView.setImageDrawable(fighters.get(position).getFighterImage());
-        holder.fighterTypeView.setText(fighters.get(position).getPilot());
+        holder.fighterTypeView.setText(f.getFighterType());
+        holder.fighterImageView.setImageDrawable(f.getFighterImage());
+        holder.fighterTypeView.setText(f.getPilot());
     }
 
     @Override

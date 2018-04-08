@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // specify an adapter (see also next example)
-        RecyclerView.Adapter mAdapter = new FighterRecyclerViewAdapter(fighterList);
+        RecyclerView.Adapter mAdapter = new FighterRecyclerViewAdapter(this, fighterList);
         mRecyclerView.setAdapter(mAdapter);
     }
 }
